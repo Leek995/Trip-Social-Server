@@ -29,12 +29,13 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests( auth -> auth
-                        .requestMatchers("/home", "/register").permitAll()
+                        .requestMatchers("/home", "/register/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(jpaUserDetailService)
+                .headers(headers-> headers.frameOptions().sameOrigin())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .httpBasic(withDefaults())
+                .httpBasic(withDefaults())
                 .build();
     }
 
