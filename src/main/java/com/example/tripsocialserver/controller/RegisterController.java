@@ -35,6 +35,4 @@ public class RegisterController {
 
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
-
-
 }

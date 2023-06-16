@@ -40,14 +40,11 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .csrf(csrf -> csrf.disable())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( auth -> auth
                                 .requestMatchers("/register").permitAll()
                                 .requestMatchers("api/auth/token").hasRole("USER")
                                 .anyRequest().authenticated()
-//                        .requestMatchers("/home", "/register/**").permitAll()
-//                        .anyRequest().authenticated()
                 )
                 .userDetailsService(jpaUserDetailService)
                 .headers(headers-> headers.frameOptions().sameOrigin())
@@ -73,7 +70,4 @@ public class SecurityConfig {
         SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"RSA");
         return NimbusJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();
     }
-
-
-
 }
