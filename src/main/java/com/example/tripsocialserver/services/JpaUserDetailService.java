@@ -22,4 +22,6 @@ public class JpaUserDetailService implements UserDetailsService {
                 .map(SecurityUser::new)
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found: " + username));
     }
+
+
 }

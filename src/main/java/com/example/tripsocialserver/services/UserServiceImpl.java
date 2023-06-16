@@ -16,8 +16,11 @@ import java.util.Optional;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User saveUser(User user) {
@@ -37,17 +40,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id);
     }
 
-//    @Override
-//    public User findByUsername(String username) {
-//        List<User> userToReturn = new ArrayList<>();
-//        for(User user : getAllUsers()) {
-//            if (user.getUsername().equals(username)) {
-//                userToReturn.add(user);
-//            }
-//        }
-//        return userToReturn.get(0);
-//    }
-//
     @Override
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);

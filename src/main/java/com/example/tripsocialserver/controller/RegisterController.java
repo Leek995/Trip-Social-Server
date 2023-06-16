@@ -30,7 +30,9 @@ public class RegisterController {
         // Sends 201 status, new resource has been created.
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/register").toUriString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //try just user
         user.setRoles("ROLE_USER");
+
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 

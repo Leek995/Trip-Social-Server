@@ -15,12 +15,12 @@ public class TripSocialServerApplication {
         SpringApplication.run(TripSocialServerApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder){
-        return args -> {
-            users.save(new User("user", encoder.encode("password"), "ROLE_USER"));
-            users.save(new User("admin", encoder.encode("password"), "ROLE_ADMIN"));
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder){
+//        return args -> {
+//            users.save(new User("user", encoder.encode("password"), "ROLE_USER"));
+//            users.save(new User("admin", encoder.encode("password"), "ROLE_ADMIN"));
+//        };
+//    }
 
 }
