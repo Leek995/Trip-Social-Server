@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "http://localhost:5173/")
 public class UserController {
     @Autowired
     private UserService userService;
