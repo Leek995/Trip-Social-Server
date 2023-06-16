@@ -21,7 +21,6 @@ public class AuthController {
 
     @PostMapping("/api/auth/token")
     public String token(Authentication authentication){
-        String message = "kfasjjfs";
         String myJSON = """
                 {
                     "jwt":""" +"\"" + tokenService.generateToken(authentication) + "\"" + """ 
