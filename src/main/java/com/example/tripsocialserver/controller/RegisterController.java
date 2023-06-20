@@ -1,13 +1,18 @@
 package com.example.tripsocialserver.controller;
 
 import com.example.tripsocialserver.models.User;
+import com.example.tripsocialserver.services.StorageService;
 import com.example.tripsocialserver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.net.URI;
 
 @RestController
@@ -17,6 +22,9 @@ public class RegisterController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private StorageService service;
 
     @GetMapping("/register")
     public String register(){
@@ -35,4 +43,20 @@ public class RegisterController {
 
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
+
+    @PostMapping("/register/image")
+    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
+        String uploadImage = service.uploadImage(file);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(uploadImage);
+    }
+
+    @GetMapping("/register/image/{fileName}")
+    public ResponseEntity<?> downloadImage(@PathVariable String fileName){
+        byte[] imageData=service.downloadImage(fileName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(imageData);
+    }
+
 }

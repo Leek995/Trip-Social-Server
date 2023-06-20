@@ -49,7 +49,7 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( auth -> auth
-                                .requestMatchers("/register").permitAll()
+                                .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("api/auth/token").hasRole("USER")
                                 .anyRequest().authenticated()
                 )
