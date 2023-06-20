@@ -8,6 +8,68 @@ public class User {
 
     @Id @GeneratedValue
     private long id;
+
+    private String firstName;
+
+    private String lastName;
+
+    private String email;
+
+    private String dateOfBirth;
+
+    private String image;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public User(String firstName, String lastName, String email, String dateOfBirth, String image, String username, String password, String roles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.image = image;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
     private String username;
     private String password;
     private String roles;
