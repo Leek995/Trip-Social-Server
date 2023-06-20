@@ -51,7 +51,7 @@ public class UserController {
         return ResponseEntity.ok().body(userService.findById(id)
                 .map(user -> {
                     user.setUsername(userToEdit.getUsername());
-                    user.setPassword(userToEdit.getPassword());
+                    user.setPassword(passwordEncoder.encode(userToEdit.getPassword()));
                     user.setRoles("ROLE_USER");
                     // If user sends no favorite team, assign the Cowboys as their favorite team.
 
