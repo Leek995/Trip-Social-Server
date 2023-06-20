@@ -16,8 +16,20 @@ public class User {
     private String email;
 
     private String dateOfBirth;
+    private String username;
+    private String password;
+    private String roles;
 
-    private String image;
+    @OneToOne
+    private ImageData imageData;
+
+    public ImageData getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(ImageData imageData) {
+        this.imageData = imageData;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -51,38 +63,6 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public User(String firstName, String lastName, String email, String dateOfBirth, String image, String username, String password, String roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.dateOfBirth = dateOfBirth;
-        this.image = image;
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
-
-    private String username;
-    private String password;
-    private String roles;
-
-    public User() {
-    }
-
-    public User(String username, String password, String roles) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
-
     public long getId() {
         return id;
     }
@@ -113,6 +93,25 @@ public class User {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public User() {
+    }
+
+    public User(String username, String password, String roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+    public User(String firstName, String lastName, String email, String dateOfBirth, String username, String password, String roles, ImageData imageData) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.imageData = imageData;
     }
 
     @Override
