@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URI;
 
 @RestController
-@CrossOrigin(allowedHeaders = "*", origins = "http://localhost:5173/")
+@CrossOrigin(allowedHeaders = "*", origins = "https://ts-server-production.up.railway.app/")
 public class RegisterController {
     @Autowired
     private PasswordEncoder passwordEncoder;
