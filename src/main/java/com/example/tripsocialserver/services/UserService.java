@@ -11,6 +11,7 @@ public interface UserService {
     public User saveUser(User user);
     public void deleteUserById(long id);
     public Optional<User> findById(long id);
+
     public List<User> getAllUsers();
     public Optional<User> findByUsername(String username);
 }

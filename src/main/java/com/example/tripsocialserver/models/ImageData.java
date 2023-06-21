@@ -15,11 +15,14 @@ import lombok.NoArgsConstructor;
 public class ImageData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     private String name;
     private String type;
     @Lob
     @Column(name = "imagedata",length = 1000000000)
     private byte[] imageData;
+
+    @OneToOne
+    private User user;
 }

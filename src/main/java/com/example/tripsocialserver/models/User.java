@@ -23,13 +23,7 @@ public class User {
     @OneToOne
     private ImageData imageData;
 
-    public ImageData getImageData() {
-        return imageData;
-    }
 
-    public void setImageData(ImageData imageData) {
-        this.imageData = imageData;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -93,6 +87,14 @@ public class User {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public ImageData getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(ImageData imageData) {
+        this.imageData = imageData;
     }
 
     public User() {

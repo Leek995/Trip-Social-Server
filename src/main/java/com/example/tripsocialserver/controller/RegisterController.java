@@ -44,11 +44,22 @@ public class RegisterController {
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 
-    @PostMapping("/register/image")
-    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
-        String uploadImage = service.uploadImage(file);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(uploadImage);
+    @PostMapping("/register/{id}/image")
+    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file, @PathVariable long id
+    ) throws IOException {
+        userService.findById(id)
+                .map(user -> {
+                    try {
+                        user.setImageData(service.uploadImage(file));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return userService.saveUser(user);
+                        });
+//        User user = userService.findById(id);
+//        user.setImageData(service.uploadImage(file));
+//        userService.saveUser(user);
+        return ResponseEntity.status(HttpStatus.OK).body(file.getOriginalFilename() + "saved successfully!");
     }
 
     @GetMapping("/register/image/{fileName}")

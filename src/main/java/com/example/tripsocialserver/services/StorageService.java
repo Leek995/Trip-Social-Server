@@ -15,15 +15,20 @@ public class StorageService {
 
     @Autowired
     private StorageRepository repository;
+    @Autowired
+    private UserService userService;
 
-    public String uploadImage(MultipartFile file) throws IOException {
+
+
+    public ImageData uploadImage(MultipartFile file) throws IOException {
 
         ImageData imageData = repository.save(ImageData.builder()
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
                 .imageData(ImageUtils.compressImage(file.getBytes())).build());
         if (imageData != null) {
-            return "file uploaded successfully : " + file.getOriginalFilename();
+//            return "file uploaded successfully : " + file.getOriginalFilename();
+            return imageData;
         }
         return null;
     }
