@@ -40,7 +40,8 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable long id) {
-        return ResponseEntity.ok().body(userService.findById(id).orElseThrow(() -> new UsernameNotFoundException("user with id " + id + "not found.")));
+        return ResponseEntity.ok().body(userService.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("user with id " + id + "not found.")));
     }
 
 
